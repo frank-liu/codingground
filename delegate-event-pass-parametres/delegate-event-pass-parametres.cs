@@ -37,8 +37,7 @@ public class Senario
 
 public class Baby
 {
-	//声明 事件参数 实例
-	public EventArgs e = null;
+
 	//1.声明一个委托，其实就是个“命令”
 	public delegate void cryEventHandler(Baby sender, currentTime e);
 	//2.声明一个事件, 基于该“命令”
