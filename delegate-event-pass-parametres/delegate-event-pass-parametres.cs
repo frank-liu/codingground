@@ -8,9 +8,9 @@
 5. currentTime : EventArgs 
 */
 using System;
-
+ 
 //构建一个自定义的时间参数类
-//用来在event delegate中传递参数
+//用来在event-delegate中传递参数
 public class currentTime : EventArgs
 {
 	public string Time;
@@ -29,7 +29,8 @@ public class Senario
 		//实例化一个Dad
 		Listener_Dad d = new Listener_Dad();
 		d.Subscribe(baby); //dad 关注baby哭这件事
-		//触发事件，事情发生了。let the baby cry
+		
+        //触发事件，事情发生了。let the baby cry
 		baby.cry();
 	}
 }
@@ -42,10 +43,10 @@ public class Baby
 	public delegate void cryEventHandler(Baby sender, currentTime e);
 	//2.声明一个事件, 基于该“命令”
 	public event cryEventHandler onCry;
+    //3. Fire the event 事件
 	public void cry()
-	{
-		//如果有人关注了这个事件，baby就哭
-		if (onCry != null)
+	{		
+		if (onCry != null) //如果有人关注了这个事件，baby就哭
 		{
 			Console.WriteLine("\n\tBaby crying : ....#%$&*((*$@)()_^~&#....\n");
 			currentTime t = new currentTime();
@@ -65,8 +66,8 @@ public class Listener_Mum
 
 	private void HeardIt(Baby b, currentTime e)
 	{
-		System.Console.WriteLine("Mum HEARD IT，do something here");
-		System.Console.WriteLine("Mum get parameter"+e.Time);
+		System.Console.WriteLine("Mum HEARD IT. get:"+e.Time+".Do something here");
+	
 	}
 }
 
@@ -79,6 +80,6 @@ public class Listener_Dad
 
 	private void HeardIt(Baby b, currentTime e)
 	{
-		System.Console.WriteLine("Dad heard IT,Dad do something");
+		System.Console.WriteLine("Daddy HEARD IT. get:"+e.Time+".Do something here");
 	}
 }
